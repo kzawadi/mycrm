@@ -4,6 +4,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
+import 'package:mycrm/injection.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -45,7 +47,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom],
       );
 
-      // await configureInjection(Environment.prod);
+      await configureInjection(Environment.prod);
       // getIt<SignsLogic>().init();
 
       Bloc.observer = AppBlocObserver();
