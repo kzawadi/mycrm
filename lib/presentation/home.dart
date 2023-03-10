@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mycrm/application/bloc/sip_ua_bloc.dart';
 import 'package:sip_ua/sip_ua.dart';
 
@@ -9,7 +10,12 @@ class CrmHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SipUaBloc, SipUaState>(
+    return BlocConsumer<SipUaBloc, SipUaState>(
+      listener: (context, state) {
+        if (state.failure.isSome()) {
+          context.go('/MyCrmFailuresPage');
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: const Text('MY CRM SIP CLIENT')),
@@ -24,7 +30,7 @@ class CrmHome extends StatelessWidget {
                           if (data.hasData) {
                             return Text(EnumHelper.getName(data.data!.state));
                           } else {
-                            return const Text('STARTING...');
+                            return const Text('Start by registering ...');
                           }
                         })),
                 Center(
