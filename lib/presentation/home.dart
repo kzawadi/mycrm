@@ -68,6 +68,9 @@ class CrmHome extends StatelessWidget {
                     ),
                   ),
                 ),
+                state.loading
+                    ? const Center(child: CupertinoActivityIndicator())
+                    : const SizedBox.shrink()
               ],
             ),
           ),

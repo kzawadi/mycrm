@@ -28,6 +28,7 @@ class SipUaBloc extends Bloc<SipUaEvent, SipUaState> {
     await event.map(
       started: (_) {},
       registerUa: (values) async {
+        emit(state.copyWith(loading: true));
         await sipInterface.initialize().then((_) async {
           await sipInterface
               .registerUa(
@@ -41,7 +42,7 @@ class SipUaBloc extends Bloc<SipUaEvent, SipUaState> {
             (value) async {
               value.fold(
                 (l) => emit(
-                  state.copyWith(failure: some(l)),
+                  state.copyWith(failure: some(l), loading: false),
                 ),
                 (r) async {
                   emit(
@@ -49,6 +50,7 @@ class SipUaBloc extends Bloc<SipUaEvent, SipUaState> {
                       registerState: some(r),
                       sipNotificationStream:
                           sipInterface.sipNotificationscontroller.stream,
+                      loading: false,
                     ),
                   );
                 },

@@ -7,10 +7,12 @@ class SipUaState with _$SipUaState {
     required Option<RegistrationState> registerState,
     required Option<MyCrmSipFailures> failure,
     Stream<RegistrationState>? sipNotificationStream,
+    required bool loading,
   }) = _SipUaState;
 
   factory SipUaState.initial() => const SipUaState(
         failure: None(),
         registerState: None(),
+        loading: false,
       );
 }

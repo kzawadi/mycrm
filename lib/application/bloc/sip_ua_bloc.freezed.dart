@@ -391,6 +391,7 @@ mixin _$SipUaState {
   Option<MyCrmSipFailures> get failure => throw _privateConstructorUsedError;
   Stream<RegistrationState>? get sipNotificationStream =>
       throw _privateConstructorUsedError;
+  bool get loading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SipUaStateCopyWith<SipUaState> get copyWith =>
@@ -407,7 +408,8 @@ abstract class $SipUaStateCopyWith<$Res> {
       {String? packageInfo,
       Option<RegistrationState> registerState,
       Option<MyCrmSipFailures> failure,
-      Stream<RegistrationState>? sipNotificationStream});
+      Stream<RegistrationState>? sipNotificationStream,
+      bool loading});
 }
 
 /// @nodoc
@@ -427,6 +429,7 @@ class _$SipUaStateCopyWithImpl<$Res, $Val extends SipUaState>
     Object? registerState = null,
     Object? failure = null,
     Object? sipNotificationStream = freezed,
+    Object? loading = null,
   }) {
     return _then(_value.copyWith(
       packageInfo: freezed == packageInfo
@@ -445,6 +448,10 @@ class _$SipUaStateCopyWithImpl<$Res, $Val extends SipUaState>
           ? _value.sipNotificationStream
           : sipNotificationStream // ignore: cast_nullable_to_non_nullable
               as Stream<RegistrationState>?,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -461,7 +468,8 @@ abstract class _$$_SipUaStateCopyWith<$Res>
       {String? packageInfo,
       Option<RegistrationState> registerState,
       Option<MyCrmSipFailures> failure,
-      Stream<RegistrationState>? sipNotificationStream});
+      Stream<RegistrationState>? sipNotificationStream,
+      bool loading});
 }
 
 /// @nodoc
@@ -479,6 +487,7 @@ class __$$_SipUaStateCopyWithImpl<$Res>
     Object? registerState = null,
     Object? failure = null,
     Object? sipNotificationStream = freezed,
+    Object? loading = null,
   }) {
     return _then(_$_SipUaState(
       packageInfo: freezed == packageInfo
@@ -497,6 +506,10 @@ class __$$_SipUaStateCopyWithImpl<$Res>
           ? _value.sipNotificationStream
           : sipNotificationStream // ignore: cast_nullable_to_non_nullable
               as Stream<RegistrationState>?,
+      loading: null == loading
+          ? _value.loading
+          : loading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -508,7 +521,8 @@ class _$_SipUaState implements _SipUaState {
       {this.packageInfo,
       required this.registerState,
       required this.failure,
-      this.sipNotificationStream});
+      this.sipNotificationStream,
+      required this.loading});
 
   @override
   final String? packageInfo;
@@ -518,10 +532,12 @@ class _$_SipUaState implements _SipUaState {
   final Option<MyCrmSipFailures> failure;
   @override
   final Stream<RegistrationState>? sipNotificationStream;
+  @override
+  final bool loading;
 
   @override
   String toString() {
-    return 'SipUaState(packageInfo: $packageInfo, registerState: $registerState, failure: $failure, sipNotificationStream: $sipNotificationStream)';
+    return 'SipUaState(packageInfo: $packageInfo, registerState: $registerState, failure: $failure, sipNotificationStream: $sipNotificationStream, loading: $loading)';
   }
 
   @override
@@ -535,12 +551,13 @@ class _$_SipUaState implements _SipUaState {
                 other.registerState == registerState) &&
             (identical(other.failure, failure) || other.failure == failure) &&
             (identical(other.sipNotificationStream, sipNotificationStream) ||
-                other.sipNotificationStream == sipNotificationStream));
+                other.sipNotificationStream == sipNotificationStream) &&
+            (identical(other.loading, loading) || other.loading == loading));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, packageInfo, registerState, failure, sipNotificationStream);
+  int get hashCode => Object.hash(runtimeType, packageInfo, registerState,
+      failure, sipNotificationStream, loading);
 
   @JsonKey(ignore: true)
   @override
@@ -554,7 +571,8 @@ abstract class _SipUaState implements SipUaState {
       {final String? packageInfo,
       required final Option<RegistrationState> registerState,
       required final Option<MyCrmSipFailures> failure,
-      final Stream<RegistrationState>? sipNotificationStream}) = _$_SipUaState;
+      final Stream<RegistrationState>? sipNotificationStream,
+      required final bool loading}) = _$_SipUaState;
 
   @override
   String? get packageInfo;
@@ -564,6 +582,8 @@ abstract class _SipUaState implements SipUaState {
   Option<MyCrmSipFailures> get failure;
   @override
   Stream<RegistrationState>? get sipNotificationStream;
+  @override
+  bool get loading;
   @override
   @JsonKey(ignore: true)
   _$$_SipUaStateCopyWith<_$_SipUaState> get copyWith =>
